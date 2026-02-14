@@ -34,16 +34,16 @@ public class NotificationService {
     @Value("${app.mail}")
     private String mail;
 
-    @Scheduled(cron = "0 0/5 * * * *")
-    public void sendNotification(){
+    @Scheduled(cron = "0 0 * * * *")
+    public void sendNotification() {
 
         List<User> userList = userRepo.findAll();
 
         for (User user : userList) {
-            processUserNotification(user); // async call
+            processUserNotification(user);
         }
-
     }
+
 
     @Async
     public void processUserNotification(User user) {
